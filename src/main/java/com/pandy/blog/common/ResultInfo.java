@@ -1,0 +1,36 @@
+package com.pandy.blog.common;
+
+/**
+ * @author Pandy
+ * 返回结果数据
+ */
+public enum ResultInfo {
+
+    NOT_FOUND("404", "没有找到"),
+    SUCCESS("200", "请求成功"),
+    GLOBAL_EXCEPTION("101", "系统繁忙")
+    ;
+    private String code;
+    private String message;
+
+     ResultInfo(String code, String message) {
+        this.code = code;
+        this.message = message;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+}
