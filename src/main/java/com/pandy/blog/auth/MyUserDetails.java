@@ -1,5 +1,6 @@
 package com.pandy.blog.auth;
 
+import com.pandy.blog.domain.User;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,7 +17,7 @@ import java.util.Set;
 @AllArgsConstructor
 @ToString
 public class MyUserDetails implements UserDetails {
-
+    private User user; // 增加user属性
     private String password;
     private  String username;
     private Set<GrantedAuthority> authorities;
