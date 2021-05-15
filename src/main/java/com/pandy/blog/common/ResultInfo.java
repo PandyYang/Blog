@@ -6,6 +6,8 @@ package com.pandy.blog.common;
  */
 public enum ResultInfo {
 
+    LOGIN_SUCCESS("200", "登录成功"),
+    LOGIN_ERROR("400", "登录失败"),
     NOT_FOUND("404", "没有找到"),
     SUCCESS("200", "请求成功"),
     GLOBAL_EXCEPTION("101", "系统繁忙")

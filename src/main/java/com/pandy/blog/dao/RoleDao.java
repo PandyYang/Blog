@@ -1,6 +1,6 @@
 package com.pandy.blog.dao;
 
-import com.pandy.blog.domain.User;
+import com.pandy.blog.domain.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
  * @author Pandy
  */
 @Repository
-public interface UserDao extends JpaRepository<User, Integer> {
+public interface RoleDao extends JpaRepository<Role, Integer> {
 
-    User getByUsername(String name);
+
 }
