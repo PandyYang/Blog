@@ -20,7 +20,7 @@ public class Role {
     @Column(name = "create_time")
     private Date createTime;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "role_menu",
             joinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")},

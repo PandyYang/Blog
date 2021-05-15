@@ -33,7 +33,7 @@ public class User {
     @Column(name = "role_id")
     private Integer roleId;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_role",
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},

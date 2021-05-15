@@ -37,9 +37,10 @@ public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHand
             }
             response.setContentType("application/json;charset=utf-8");
             response.getWriter().write(
-                    objectMapper.writeValueAsString(Result.success().codeAndMessage(ResultInfo.SUCCESS)
-                            .data("user", user).data("roles", roles)));
-
+                    objectMapper.writeValueAsString(Result.success()
+                            .code(ResultInfo.SUCCESS.getCode())
+                            .message(ResultInfo.SUCCESS.getMessage())
+                            .data("user", user)));
         }
     }
 }

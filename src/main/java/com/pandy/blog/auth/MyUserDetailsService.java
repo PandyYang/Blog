@@ -35,24 +35,24 @@ public class MyUserDetailsService  implements UserDetailsService {
 
         //用户角色
         List<Role> roles =  user.getRoles();
-        if (roles.size() <= 0) {
-            throw new UsernameNotFoundException("当前用户角色受限");
-        }
-
-        MyUserDetails myUserDetails = new MyUserDetails();
-        myUserDetails.setUser(user);
+        if (roles.size() > 0) {
+            MyUserDetails myUserDetails = new MyUserDetails();
+            myUserDetails.setUser(user);
 //        myUserDetails.setUsername("admin");
 //        myUserDetails.setPassword("{noop}123456");
-        myUserDetails.setUsername(user.getUsername());
-        myUserDetails.setPassword("{noop}" + user.getPassword()); // noop表示未加密状态
+            myUserDetails.setUsername(user.getUsername());
+            myUserDetails.setPassword("{noop}" + user.getPassword()); // noop表示未加密状态
 
-        SimpleGrantedAuthority authority;
-        Set<GrantedAuthority> authorities = new HashSet<>();
-        for (Role role : roles) {
-            authority = new SimpleGrantedAuthority(role.getRoleName());
-            authorities.add(authority);
+            SimpleGrantedAuthority authority;
+            Set<GrantedAuthority> authorities = new HashSet<>();
+            for (Role role : roles) {
+                authority = new SimpleGrantedAuthority(role.getRoleName());
+                authorities.add(authority);
+            }
+            myUserDetails.setAuthorities(authorities);
+            return myUserDetails;
+        } else {
+            throw  new UsernameNotFoundException("没有该用户");
         }
-        myUserDetails.setAuthorities(authorities);
-        return myUserDetails;
     }
 }

@@ -1,4 +1,4 @@
-package com.pandy.blog.Exception;
+package com.pandy.blog.exception;
 
 import com.pandy.blog.common.Result;
 import com.pandy.blog.common.ResultInfo;
