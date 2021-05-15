@@ -21,9 +21,9 @@ public class MenuController {
     @Autowired
     private MenuService menuService;
 
-    @GetMapping("/menus")
+    @GetMapping("/getMenuList")
     public Result listMenusByUserRole(@RequestParam String roleName) {
-        List<Menu> menuDTOList = menuService.listMenusByUserRole(roleName);
-        return Result.success().data("data", menuDTOList);
+        List<Menu> menuDTOList = menuService.listMenusByUserRole("admin");
+        return Result.success().data("menuList", menuDTOList);
     }
 }

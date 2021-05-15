@@ -10,7 +10,9 @@ public enum ResultInfo {
     LOGIN_ERROR("400", "登录失败"),
     NOT_FOUND("404", "没有找到"),
     SUCCESS("200", "请求成功"),
-    GLOBAL_EXCEPTION("101", "系统繁忙")
+    GLOBAL_EXCEPTION("101", "系统繁忙"),
+    VERIFY_SUCCESS("756","登录验证成功"),
+    VERIFY_FAILED("885","登录验证失败"),
     ;
     private String code;
     private String message;

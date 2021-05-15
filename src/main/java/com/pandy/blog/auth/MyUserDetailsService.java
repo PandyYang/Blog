@@ -50,7 +50,10 @@ public class MyUserDetailsService  implements UserDetailsService {
                 authorities.add(authority);
             }
             myUserDetails.setAuthorities(authorities);
-            return myUserDetails;
+            UserAuth userAuth=new UserAuth();
+            userAuth.setUser(user);
+            userAuth.setAuthorities(authorities);
+            return  userAuth;
         } else {
             throw  new UsernameNotFoundException("没有该用户");
         }

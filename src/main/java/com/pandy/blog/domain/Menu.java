@@ -32,7 +32,7 @@ public class Menu {
   private Integer parentId;
 
   @Column(name = "disabled")
-  private boolean disabled;
+  private Integer disabled;
 
   @Transient
   private List<Menu> children = new ArrayList<>();
@@ -85,11 +85,11 @@ public class Menu {
     this.parentId = parentId;
   }
 
-  public boolean isDisabled() {
+  public Integer getDisabled() {
     return disabled;
   }
 
-  public void setDisabled(boolean disabled) {
+  public void setDisabled(Integer disabled) {
     this.disabled = disabled;
   }
 }

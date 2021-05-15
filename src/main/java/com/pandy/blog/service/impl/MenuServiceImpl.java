@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -28,28 +29,38 @@ public class MenuServiceImpl implements MenuService {
         Role role = roleDao.getByRoleName(roleName);
         List<Menu> menuList = role.getMenus();
         List<Menu> menuDTOList = new ArrayList<>();
-        Menu menuDTO = null;
-        for (Menu menu : menuList) {
+        int[] used = new int[menuList.size()];
+        int length = menuList.size();
+        Arrays.fill(used, 0);
+        for (int i = 0; i < length; i++) {
+            Menu menu = menuList.get(i);
+            used[i] = 1;
             if (menu.getParentId() == null || menu.getParentId() == 0) {
                 // 父级菜单
-                findChildren(menu, menuList);
+                findChildren(menu, menuList, used);
                 menuDTOList.add(menu);
             }
         }
         return menuDTOList;
     }
 
-    private void findChildren(Menu menu, List<Menu> menuList) {
-        for (Menu child : menuList) {
-            if (child.getParentId() == menu.getId()) {
-                menu.getChildren().add(child);
+    private void findChildren(Menu menu, List<Menu> menuList, int[] used) {
+        for (int i = 0; i < menuList.size(); i++) {
+            if (used[i] == 1) {
+                continue;
+            }
+            if (menuList.get(i).getParentId() != null) {
+                if (menuList.get(i).getParentId().equals(menu.getId())) {
+                    used[i] = 1;
+                    menu.getChildren().add(menuList.get(i));
+                }
             }
         }
         if (menu.getChildren().size() == 0) {
             return;
         }
         for (Menu menu1 : menu.getChildren()) {
-            findChildren(menu1, menuList);
+            findChildren(menu1, menuList, used);
         }
     }
 }
