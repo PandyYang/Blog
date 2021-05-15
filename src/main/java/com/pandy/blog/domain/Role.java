@@ -26,5 +26,5 @@ public class Role {
             joinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "menu_id", referencedColumnName = "id")}
     )
-    private List<Menu> menus;
+    public List<Menu> menus;
 }
