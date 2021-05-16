@@ -13,6 +13,7 @@ public enum ResultInfo {
     GLOBAL_EXCEPTION("101", "系统繁忙"),
     VERIFY_SUCCESS("756","登录验证成功"),
     VERIFY_FAILED("885","登录验证失败"),
+    ACCESS_DENY("403", "权限不足")
     ;
     private String code;
     private String message;
