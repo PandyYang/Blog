@@ -12,7 +12,7 @@ public class Menu {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "menuName")
+    @Column(name = "menu_name")
     private String menuName;
 
     @Column(name = "uri")

@@ -4,6 +4,7 @@ import com.alibaba.druid.util.StringUtils;
 import com.pandy.blog.common.PageResult;
 import com.pandy.blog.dao.RoleDao;
 import com.pandy.blog.dao.UserDao;
+import com.pandy.blog.dao.UserRoleDao;
 import com.pandy.blog.domain.Role;
 import com.pandy.blog.domain.User;
 import com.pandy.blog.dto.UserDTO;
@@ -33,6 +34,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private UserRoleDao userRoleDao;
 
     @Override
     public User getUserByName(String name) {
@@ -68,19 +72,33 @@ public class UserServiceImpl implements UserService {
             return pageResult;
             // 指定查询角色
         } else if (!StringUtils.isEmpty(roleName) && StringUtils.isEmpty(nickName)) {
-            Page<User> pageUsers = userDao.findAll(PageRequest.of(current-1, size));
-            List<User> users = pageUsers.getContent();
-            for (User user : users) {
-                final UserDTO userDTO = userMapper.entityToDTO(user);
-                final Role one = roleDao.getOne(user.getRoleId());
-                userDTO.setRoleName(one.getRoleName());
+
+            final Role byRoleName1 = roleDao.getByRoleName(roleName);
+            final Page<User> allByRoleId = userDao.getAllByRoleId(byRoleName1.getId(), PageRequest.of(current - 1, size));
+            for (User user : allByRoleId) {
+                UserDTO userDTO = userMapper.entityToDTO(user);
+                userDTO.setRoleName(roleName);
                 userDTOS.add(userDTO);
             }
-            userDTOS.stream().filter(res -> res.getRoleName().equals(roleName)).collect(Collectors.toList());
             PageResult pageResult = new PageResult();
             pageResult.setItems(userDTOS);
-            pageResult.setTotal((int) pageUsers.getTotalElements());
+            pageResult.setTotal((int) allByRoleId.getTotalElements());
             return pageResult;
+//            Page<User> pageUsers = userDao.findAll(PageRequest.of(current-1, size));
+//            List<User> users = pageUsers.getContent();
+//            for (User user : users) {
+//                final UserDTO userDTO = userMapper.entityToDTO(user);
+//                final Role one = roleDao.getOne(user.getRoleId());
+//                userDTO.setRoleName(one.getRoleName());
+//                userDTOS.add(userDTO);
+//            }
+//            userDTOS = userDTOS.stream().filter(res -> res.getRoleName().equals(roleName)).collect(Collectors.toList());
+//            PageResult pageResult = new PageResult();
+//            pageResult.setItems(userDTOS);
+//            final Role byRoleName = roleDao.getByRoleName(roleName);
+//            final int i = userDao.countAllByRoleId(byRoleName.getId());
+//            pageResult.setTotal(i);
+//            return pageResult;
             //模糊查询昵称
         } else if (StringUtils.isEmpty(roleName) && !StringUtils.isEmpty(nickName)) {
             final Page<User> pageUsers = userDao.getAllByNicknameContaining(nickName, PageRequest.of(current -1, size));
@@ -93,12 +111,12 @@ public class UserServiceImpl implements UserService {
             }
             PageResult pageResult = new PageResult();
             pageResult.setItems(userDTOS);
-            pageResult.setTotal((int) pageUsers.getTotalElements());
+            final int i = userDao.countAllByNicknameContaining(nickName);
+            pageResult.setTotal(i);
             return pageResult;
             // 角色下模糊查询昵称
         }else {
             Page<User> pageUsers = userDao.findAll(PageRequest.of(current-1, size));
-            final long totalElements = pageUsers.getTotalElements();
             List<User> users = pageUsers.getContent();
             for (User user : users) {
                 final UserDTO userDTO = userMapper.entityToDTO(user);
@@ -107,10 +125,13 @@ public class UserServiceImpl implements UserService {
                 userDTOS.add(userDTO);
             }
             //Predicate<UserDTO> p1 = s -> s.getNickname().contains(nickName);
-            userDTOS.stream().filter(res -> res.getRoleName().equals(roleName)).filter(res -> res.getNickname().contains(nickName)).collect(Collectors.toList());
+            userDTOS = userDTOS.parallelStream().filter(res -> res.getRoleName().equals(roleName)).filter(res -> res.getNickname().contains(nickName)).collect(Collectors.toList());
             PageResult pageResult = new PageResult();
             pageResult.setItems(userDTOS);
-            pageResult.setTotal((int) pageUsers.getTotalElements());
+            final List<User> allByNicknameContaining = userDao.getAllByNicknameContaining(nickName);
+            final Role byRoleName = roleDao.getByRoleName(roleName);
+            final List<User> collect = allByNicknameContaining.stream().filter(res -> res.getRoleId().equals(byRoleName.getId())).collect(Collectors.toList());
+            pageResult.setTotal(collect.size());
             return pageResult;
         }
     }

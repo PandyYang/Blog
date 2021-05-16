@@ -12,31 +12,22 @@ public class Article {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "title")
     private String title;
 
-    @Column(name = "title")
     private String picture;
 
-    @Column(name = "title")
     private Integer categoryId;
 
-    @Column(name = "title")
     private String content;
 
-    @Column(name = "title")
     private Date createTime;
 
-    @Column(name = "title")
     private Date updateTime;
 
-    @Column(name = "title")
     private Date deleteTime;
 
-    @Column(name = "title")
     private boolean isTop;
 
-    @Column(name = "title")
     private boolean isDraft;
 
     public boolean isTop() {
