@@ -4,7 +4,6 @@ package com.pandy.blog.domain;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -32,6 +31,10 @@ public class User {
     private String intro;
     @Column(name = "role_id")
     private Integer roleId;
+    @Column(name = "is_silence")
+    private Integer isSilence;
+    @Column(name = "logic_delete")
+    private boolean logicDelete;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
