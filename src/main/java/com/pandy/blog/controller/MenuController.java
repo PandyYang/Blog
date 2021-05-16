@@ -23,7 +23,7 @@ public class MenuController {
 
     @GetMapping("/getMenuList")
     public Result listMenusByUserRole(@RequestParam String roleName) {
-        List<Menu> menuDTOList = menuService.listMenusByUserRole("admin");
+        List<Menu> menuDTOList = menuService.listMenusByUserRole(roleName);
         return Result.success().data("menuList", menuDTOList);
     }
 }

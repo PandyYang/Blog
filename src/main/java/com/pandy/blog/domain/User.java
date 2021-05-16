@@ -1,7 +1,9 @@
 package com.pandy.blog.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -9,7 +11,6 @@ import java.util.List;
 
 @Table(name = "user")
 @Entity
-@Data
 public class User {
 
     @Id
@@ -23,8 +24,12 @@ public class User {
     private String nickname;
     @Column(name = "avatar")
     private String avatar;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "create_time")
     private Date createTime;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "update_time")
     private Date updateTime;
     @Column(name = "intro")
@@ -32,7 +37,7 @@ public class User {
     @Column(name = "role_id")
     private Integer roleId;
     @Column(name = "is_silence")
-    private Integer isSilence;
+    private boolean isSilence;
     @Column(name = "logic_delete")
     private boolean logicDelete;
 
@@ -43,4 +48,100 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")}
     )
     private List<Role> roles;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public String getIntro() {
+        return intro;
+    }
+
+    public void setIntro(String intro) {
+        this.intro = intro;
+    }
+
+    public Integer getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
+    }
+
+    public boolean isSilence() {
+        return isSilence;
+    }
+
+    public void setSilence(boolean silence) {
+        isSilence = silence;
+    }
+
+    public boolean isLogicDelete() {
+        return logicDelete;
+    }
+
+    public void setLogicDelete(boolean logicDelete) {
+        this.logicDelete = logicDelete;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
 }
