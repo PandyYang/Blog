@@ -25,6 +25,8 @@ public class UserDTO {
     // 禁言
     private boolean isSilence;
 
+    private long total;
+
     public String getRoleName() {
         return roleName;
     }

@@ -1,5 +1,6 @@
 package com.pandy.blog.controller;
 
+import com.pandy.blog.common.PageResult;
 import com.pandy.blog.common.Result;
 import com.pandy.blog.dto.UserDTO;
 import com.pandy.blog.service.UserService;
@@ -26,8 +27,8 @@ public class UserController {
                        @RequestParam(name = "nickname", required = false) String nickName,
                        @RequestParam(name = "current", required = true) int current,
                        @RequestParam(name = "size", required = true) int size) {
-        final List<UserDTO> userList = userService.getUserList(roleName, nickName, current, size);
-        return Result.success().data("data", userList).data("total", userList.size());
+        PageResult<UserDTO> userList = userService.getUserList(roleName, nickName, current, size);
+        return Result.success().data("data", userList.getItems()).data("total", userList.getTotal());
     }
 
 }

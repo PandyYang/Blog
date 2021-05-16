@@ -1,6 +1,7 @@
 package com.pandy.blog.service.impl;
 
 import com.alibaba.druid.util.StringUtils;
+import com.pandy.blog.common.PageResult;
 import com.pandy.blog.dao.RoleDao;
 import com.pandy.blog.dao.UserDao;
 import com.pandy.blog.domain.Role;
@@ -49,7 +50,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDTO> getUserList(String roleName, String nickName, int current, int size) {
+    public PageResult<UserDTO> getUserList(String roleName, String nickName, int current, int size) {
         List<UserDTO> userDTOS = new ArrayList<>();
         // 查询所有用户
         if (StringUtils.isEmpty(roleName) && StringUtils.isEmpty(nickName)) {
@@ -61,7 +62,10 @@ public class UserServiceImpl implements UserService {
                 userDTO.setRoleName(one.getRoleName());
                 userDTOS.add(userDTO);
             }
-            return userDTOS;
+            PageResult pageResult = new PageResult();
+            pageResult.setItems(userDTOS);
+            pageResult.setTotal((int) pageUsers.getTotalElements());
+            return pageResult;
             // 指定查询角色
         } else if (!StringUtils.isEmpty(roleName) && StringUtils.isEmpty(nickName)) {
             Page<User> pageUsers = userDao.findAll(PageRequest.of(current-1, size));
@@ -72,7 +76,11 @@ public class UserServiceImpl implements UserService {
                 userDTO.setRoleName(one.getRoleName());
                 userDTOS.add(userDTO);
             }
-            return userDTOS.stream().filter(res -> res.getRoleName().equals(roleName)).collect(Collectors.toList());
+            userDTOS.stream().filter(res -> res.getRoleName().equals(roleName)).collect(Collectors.toList());
+            PageResult pageResult = new PageResult();
+            pageResult.setItems(userDTOS);
+            pageResult.setTotal((int) pageUsers.getTotalElements());
+            return pageResult;
             //模糊查询昵称
         } else if (StringUtils.isEmpty(roleName) && !StringUtils.isEmpty(nickName)) {
             final Page<User> pageUsers = userDao.getAllByNicknameContaining(nickName, PageRequest.of(current -1, size));
@@ -83,10 +91,14 @@ public class UserServiceImpl implements UserService {
                 userDTO.setRoleName(one.getRoleName());
                 userDTOS.add(userDTO);
             }
-            return userDTOS;
+            PageResult pageResult = new PageResult();
+            pageResult.setItems(userDTOS);
+            pageResult.setTotal((int) pageUsers.getTotalElements());
+            return pageResult;
             // 角色下模糊查询昵称
         }else {
             Page<User> pageUsers = userDao.findAll(PageRequest.of(current-1, size));
+            final long totalElements = pageUsers.getTotalElements();
             List<User> users = pageUsers.getContent();
             for (User user : users) {
                 final UserDTO userDTO = userMapper.entityToDTO(user);
@@ -95,8 +107,11 @@ public class UserServiceImpl implements UserService {
                 userDTOS.add(userDTO);
             }
             //Predicate<UserDTO> p1 = s -> s.getNickname().contains(nickName);
-            return userDTOS.stream().filter(res -> res.getRoleName().equals(roleName)).filter(res -> res.getNickname().contains(nickName)).collect(Collectors.toList());
-
+            userDTOS.stream().filter(res -> res.getRoleName().equals(roleName)).filter(res -> res.getNickname().contains(nickName)).collect(Collectors.toList());
+            PageResult pageResult = new PageResult();
+            pageResult.setItems(userDTOS);
+            pageResult.setTotal((int) pageUsers.getTotalElements());
+            return pageResult;
         }
     }
 }
