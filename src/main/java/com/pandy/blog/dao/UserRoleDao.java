@@ -17,4 +17,6 @@ public interface UserRoleDao extends JpaRepository<UserRole, Integer> {
     List<UserRole> getAllByRoleId(int roleId);
 
     UserRole getAllByRoleIdAndUserId(int roleId, int userId);
+
+    int countAllByRoleId(int roleId);
 }
