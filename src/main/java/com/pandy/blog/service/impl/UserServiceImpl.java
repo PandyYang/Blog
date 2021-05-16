@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Pandy
@@ -50,6 +51,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserDTO> getUserList(String roleName, String nickName, int current, int size) {
         List<UserDTO> userDTOS = new ArrayList<>();
+        // 查询所有用户
         if (StringUtils.isEmpty(roleName) && StringUtils.isEmpty(nickName)) {
             Page<User> pageUsers = userDao.findAll(PageRequest.of(current-1, size));
             List<User> users = pageUsers.getContent();
@@ -59,7 +61,42 @@ public class UserServiceImpl implements UserService {
                 userDTO.setRoleName(one.getRoleName());
                 userDTOS.add(userDTO);
             }
+            return userDTOS;
+            // 指定查询角色
+        } else if (!StringUtils.isEmpty(roleName) && StringUtils.isEmpty(nickName)) {
+            Page<User> pageUsers = userDao.findAll(PageRequest.of(current-1, size));
+            List<User> users = pageUsers.getContent();
+            for (User user : users) {
+                final UserDTO userDTO = userMapper.entityToDTO(user);
+                final Role one = roleDao.getOne(user.getRoleId());
+                userDTO.setRoleName(one.getRoleName());
+                userDTOS.add(userDTO);
+            }
+            return userDTOS.stream().filter(res -> res.getRoleName().equals(roleName)).collect(Collectors.toList());
+            //模糊查询昵称
+        } else if (StringUtils.isEmpty(roleName) && !StringUtils.isEmpty(nickName)) {
+            final Page<User> pageUsers = userDao.getAllByNicknameContaining(nickName, PageRequest.of(current -1, size));
+            List<User> users = pageUsers.getContent();
+            for (User user : users) {
+                final UserDTO userDTO = userMapper.entityToDTO(user);
+                final Role one = roleDao.getOne(user.getRoleId());
+                userDTO.setRoleName(one.getRoleName());
+                userDTOS.add(userDTO);
+            }
+            return userDTOS;
+            // 角色下模糊查询昵称
+        }else {
+            Page<User> pageUsers = userDao.findAll(PageRequest.of(current-1, size));
+            List<User> users = pageUsers.getContent();
+            for (User user : users) {
+                final UserDTO userDTO = userMapper.entityToDTO(user);
+                final Role one = roleDao.getOne(user.getRoleId());
+                userDTO.setRoleName(one.getRoleName());
+                userDTOS.add(userDTO);
+            }
+            //Predicate<UserDTO> p1 = s -> s.getNickname().contains(nickName);
+            return userDTOS.stream().filter(res -> res.getRoleName().equals(roleName)).filter(res -> res.getNickname().contains(nickName)).collect(Collectors.toList());
+
         }
-        return userDTOS;
     }
 }
