@@ -1,6 +1,8 @@
 package com.pandy.blog.domain;
 
 
+import com.pandy.blog.vo.ArticleAddVo;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -16,19 +18,39 @@ public class Article {
 
     private String picture;
 
+    @Column(name = "category_id")
     private Integer categoryId;
 
     private String content;
 
+    @Column(name = "create_time")
     private Date createTime;
 
+    @Column(name = "update_time")
     private Date updateTime;
 
+    @Column(name = "delete_time")
     private Date deleteTime;
 
+    @Column(name = "is_top")
     private boolean isTop;
 
+    @Column(name = "is_draft")
     private boolean isDraft;
+
+    public Article(ArticleAddVo articleAddVo) {
+        this.id = articleAddVo.getId();
+        this.title = articleAddVo.getTitle();
+        this.picture = articleAddVo.getPicture();
+        this.content = articleAddVo.getContent();
+        this.categoryId = articleAddVo.getCategoryId();
+        this.isTop = articleAddVo.isTop();
+        this.isDraft = articleAddVo.isDraft();
+    }
+
+    public Article() {
+
+    }
 
     public boolean isTop() {
         return isTop;

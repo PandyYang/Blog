@@ -1,25 +1,26 @@
 package com.pandy.blog.vo;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * @author Pandy
  */
-public class ArticleAddVo {
-    private int id;
+public class ArticleAddVo implements Serializable {
+    private Integer id;
     private String title;
     private String content;
     private String picture;
-    private int categoryId;
+    private Integer categoryId;
     private List<Integer> tagIdList;
-    private int isTop;
-    private int isDraft;
+    private boolean isTop;
+    private boolean isDraft;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -47,11 +48,11 @@ public class ArticleAddVo {
         this.picture = picture;
     }
 
-    public int getCategoryId() {
+    public Integer getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(int categoryId) {
+    public void setCategoryId(Integer categoryId) {
         this.categoryId = categoryId;
     }
 
@@ -63,19 +64,19 @@ public class ArticleAddVo {
         this.tagIdList = tagIdList;
     }
 
-    public int getIsTop() {
+    public boolean isTop() {
         return isTop;
     }
 
-    public void setIsTop(int isTop) {
-        this.isTop = isTop;
+    public void setTop(boolean top) {
+        isTop = top;
     }
 
-    public int getIsDraft() {
+    public boolean isDraft() {
         return isDraft;
     }
 
-    public void setIsDraft(int isDraft) {
-        this.isDraft = isDraft;
+    public void setDraft(boolean draft) {
+        isDraft = draft;
     }
 }
