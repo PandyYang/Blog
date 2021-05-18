@@ -14,4 +14,6 @@ public interface ArticleService {
      void upsert(ArticleAddVo articleAddVo);
 
      PageResult<ArticleDTO> findAllByTitle(String title, int current, int size);
+
+     ArticleDTO getById(int id) throws Exception;
 }

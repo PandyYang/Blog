@@ -14,7 +14,6 @@ import com.pandy.blog.dto.ArticleDTO;
 import com.pandy.blog.mapper.ArticleMapper;
 import com.pandy.blog.service.ArticleService;
 import com.pandy.blog.vo.ArticleAddVo;
-import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,6 +23,7 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Pandy
@@ -94,5 +94,32 @@ public class ArticleServiceImpl implements ArticleService {
             articleDTOS.add(articleDTO);
         }
         return  new PageResult(articleDTOS, (int) allByTitleContaining.getTotalElements());
+    }
+
+    @Override
+    public ArticleDTO getById(int id) throws Exception {
+        final Article article = articleDao.findById(id).orElseThrow(Exception::new);
+        final ArticleDTO articleDTO = articleMapper.entityToDTO(article);
+        if (article.getCategoryId() != null) {
+            final Category category = categoryDao.findById(article.getCategoryId()).get();
+            articleDTO.setCategoryName(category.getCategory());
+            articleDTO.setCategoryId(category.getId());
+        }
+
+        List<Tag> tags = new ArrayList<>();
+        List<Integer> taIdList = new ArrayList<>();
+        final List<ArticleTag> allByArticleId = articleTagDao.findAllByArticleId(article.getId());
+        if ( allByArticleId!= null) {
+            for (ArticleTag articleTag : allByArticleId) {
+                final Integer tagId = articleTag.getTagId();
+                final Tag one = tagDao.findById(tagId).get();
+                tags.add(one);
+                taIdList.add(one.getId());
+            }
+            articleDTO.setTagIdList(taIdList);
+            articleDTO.setTagList(tags);
+        }
+        articleDTO.setTagsName(tags.stream().map(Tag::getTag).collect(Collectors.toList()));
+        return articleDTO;
     }
 }

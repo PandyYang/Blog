@@ -34,4 +34,10 @@ public class ArticleController {
         PageResult<ArticleDTO> articleDTOList = articleService.findAllByTitle(title, current, size);
         return Result.success().data("data", articleDTOList);
     }
+
+    @GetMapping("getArticleById")
+    public Result getById(@RequestParam int articleId) throws Exception {
+        final ArticleDTO byId = articleService.getById(articleId);
+        return Result.success().data("data", byId);
+    }
 }
