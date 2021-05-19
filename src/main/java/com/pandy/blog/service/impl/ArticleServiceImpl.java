@@ -18,7 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Date;
@@ -81,16 +80,20 @@ public class ArticleServiceImpl implements ArticleService {
         List<ArticleDTO> articleDTOS = new ArrayList<>();
         for (Article article : allByTitleContaining.getContent()) {
             final ArticleDTO articleDTO = articleMapper.entityToDTO(article);
-            final Category category = categoryDao.findById(article.getCategoryId()).get();
-            articleDTO.setCategoryName(category.getCategory());
-            final List<ArticleTag> allByArticleId = articleTagDao.findAllByArticleId(article.getId());
-            List<String> tagNames = new ArrayList<>();
-            for (ArticleTag articleTag : allByArticleId) {
-                final Tag one = tagDao.getOne(articleTag.getTagId());
-                final String tag = one.getTag();
-                tagNames.add(tag);
+            if (article.getCategoryId() != null) {
+                final Category category = categoryDao.findById(article.getCategoryId()).get();
+                articleDTO.setCategoryName(category.getCategory());
             }
-            articleDTO.setTagsName(tagNames);
+            final List<ArticleTag> allByArticleId = articleTagDao.findAllByArticleId(article.getId());
+            if (!allByArticleId.isEmpty()) {
+                List<String> tagNames = new ArrayList<>();
+                for (ArticleTag articleTag : allByArticleId) {
+                    final Tag one = tagDao.getOne(articleTag.getTagId());
+                    final String tag = one.getTag();
+                    tagNames.add(tag);
+                }
+                articleDTO.setTagsName(tagNames);
+            }
             articleDTOS.add(articleDTO);
         }
         return  new PageResult(articleDTOS, (int) allByTitleContaining.getTotalElements());
@@ -121,5 +124,12 @@ public class ArticleServiceImpl implements ArticleService {
         }
         articleDTO.setTagsName(tags.stream().map(Tag::getTag).collect(Collectors.toList()));
         return articleDTO;
+    }
+
+    @Override
+    public void deleteArticles(List<Integer> param) {
+        for (Integer integer : param) {
+            articleDao.deleteById(integer);
+        }
     }
 }

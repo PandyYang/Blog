@@ -2,6 +2,7 @@ package com.pandy.blog.domain;
 
 
 import com.pandy.blog.vo.ArticleAddVo;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -24,12 +25,15 @@ public class Article {
     private String content;
 
     @Column(name = "create_time")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     @Column(name = "update_time")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
 
     @Column(name = "delete_time")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date deleteTime;
 
     @Column(name = "is_top")

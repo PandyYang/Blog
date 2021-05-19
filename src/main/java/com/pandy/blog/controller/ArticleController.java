@@ -8,7 +8,10 @@ import com.pandy.blog.vo.ArticleAddVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Pandy
@@ -39,5 +42,16 @@ public class ArticleController {
     public Result getById(@RequestParam int articleId) throws Exception {
         final ArticleDTO byId = articleService.getById(articleId);
         return Result.success().data("data", byId);
+    }
+
+    @DeleteMapping("deleteArticles")
+    public Result deleteById(@RequestBody String str) {
+        final List<Object> collect = Arrays.stream(Arrays.stream(str.split(",")).toArray()).collect(Collectors.toList());
+        List<Integer> res = new ArrayList<>();
+        for (Object o : collect) {
+            res.add(Integer.parseInt(o.toString()));
+        }
+        articleService.deleteArticles(res);
+        return Result.success();
     }
 }

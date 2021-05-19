@@ -6,11 +6,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
-/**
- * @author 傅帅  QQ:1766281636
- * @creat 2020- 11-17-上午 9:47
- **/
-
 public class UserAuth implements UserDetails {
 
 
