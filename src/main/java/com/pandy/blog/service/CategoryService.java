@@ -18,4 +18,6 @@ public interface CategoryService {
 
     PageResult<CategoryDTO> listCategory(String categoryName, int current,  int size);
 
+    PageResult<CategoryDTO> list();
+
 }

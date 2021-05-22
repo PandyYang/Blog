@@ -1,7 +1,9 @@
 package com.pandy.blog.service.impl;
 
 import com.pandy.blog.common.PageResult;
+import com.pandy.blog.dao.ArticleDao;
 import com.pandy.blog.dao.CategoryDao;
+import com.pandy.blog.domain.Article;
 import com.pandy.blog.domain.Category;
 import com.pandy.blog.dto.CategoryDTO;
 import com.pandy.blog.service.CategoryService;
@@ -27,6 +29,9 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Autowired
     private CategoryDao categoryDao;
+
+    @Autowired
+    private ArticleDao articleDao;
 
     @Override
     public List<Category> getCategoryList() {
@@ -74,5 +79,21 @@ public class CategoryServiceImpl implements CategoryService {
         categoryDTOPageResult.setItems(categoryDTOList);
         categoryDTOPageResult.setTotal((int) categoryDTOS.getTotalElements());
         return categoryDTOPageResult;
+    }
+
+    @Override
+    public PageResult<CategoryDTO> list() {
+        final List<Category> all = categoryDao.findAll();
+        List<CategoryDTO> categoryDTOList = new ArrayList<>();
+        for (Category category : all) {
+            final List<Article> allByCategoryId = articleDao.findAllByCategoryId(category.getId());
+            categoryDTOList.add(new CategoryDTO(category.getId(),
+                    category.getCategory(), category.getCreateTime(), category.getUpdateTime()
+            , allByCategoryId.size()));
+        }
+
+        return new PageResult<CategoryDTO>(
+                categoryDTOList, (int) categoryDao.count()
+        );
     }
 }

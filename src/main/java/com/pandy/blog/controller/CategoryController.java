@@ -34,6 +34,7 @@ public class CategoryController {
         return Result.success();
     }
 
+    // 管理端列表
     @GetMapping("listCategory")
     public Result getArticleList(@RequestParam(name = "current", required = true) int current,
                                  @RequestParam(name = "size", required = true) int size,
@@ -41,4 +42,11 @@ public class CategoryController {
         final PageResult<CategoryDTO> categoryDTOPageResult = categoryService.listCategory(categoryName, current, size);
         return Result.success().data("data", categoryDTOPageResult);
     }
+
+    // 博客端列表
+    @GetMapping("list")
+    public Result listCategories() {
+        return Result.success().data("data", categoryService.list());
+    }
+
 }

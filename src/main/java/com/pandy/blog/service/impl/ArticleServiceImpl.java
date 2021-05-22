@@ -10,7 +10,7 @@ import com.pandy.blog.domain.Article;
 import com.pandy.blog.domain.ArticleTag;
 import com.pandy.blog.domain.Category;
 import com.pandy.blog.domain.Tag;
-import com.pandy.blog.dto.ArticleDTO;
+import com.pandy.blog.dto.*;
 import com.pandy.blog.mapper.ArticleMapper;
 import com.pandy.blog.service.ArticleService;
 import com.pandy.blog.vo.ArticleAddVo;
@@ -131,5 +131,89 @@ public class ArticleServiceImpl implements ArticleService {
         for (Integer integer : param) {
             articleDao.deleteById(integer);
         }
+    }
+
+    @Override
+    public List<ArticleHomeDTO> listArticles(int current) {
+        final Page<Article> all = articleDao.findAll(PageRequest.of(current - 1, 10));
+        List<ArticleHomeDTO> articleHomeDTOS = new ArrayList<>();
+        for (Article article : all) {
+            final Category category = categoryDao.findById(article.getCategoryId()).get();
+            final List<ArticleTag> allByArticleId = articleTagDao.findAllByArticleId(article.getId());
+            List<TagDTO> tagDTOList = new ArrayList<>();
+            for (ArticleTag articleTag : allByArticleId) {
+                final Tag tag = tagDao.findById(articleTag.getTagId()).get();
+                tagDTOList.add(new TagDTO(tag.getId(), tag.getTag(), tag.getCreateTime(), tag.getUpdateTime()));
+            }
+            articleHomeDTOS.add(new ArticleHomeDTO(article.getId(), article.getPicture(), article.getTitle(),
+                    article.getContent(), article.getCreateTime(), article.isTop(), category.getId(), category.getCategory(),
+                    tagDTOList));
+        }
+        return articleHomeDTOS;
+    }
+
+    @Override
+    public ArticleWebDTO getArticleById(int articleId) {
+
+        // 更新文章浏览量 在redis更新
+        ArticleWebDTO articleWebDTO = new ArticleWebDTO();
+        // 查询上一篇文章
+        if (articleId == 1) {
+            ArticlePaginationDTO articlePaginationDTO2 = new ArticlePaginationDTO();
+            final Article one = articleDao.getOne(articleId + 1);
+            articlePaginationDTO2.setId(one.getId());
+            articlePaginationDTO2.setArticleCover(one.getPicture());
+            articlePaginationDTO2.setArticleTitle(one.getTitle());
+            articleWebDTO.setNextArticle(articlePaginationDTO2);
+
+            articleWebDTO.setLastArticle(articlePaginationDTO2);
+        } else {
+            ArticlePaginationDTO articlePaginationDTO = new ArticlePaginationDTO();
+            final Article one = articleDao.getOne(articleId - 1);
+            articlePaginationDTO.setId(one.getId());
+            articlePaginationDTO.setArticleCover(one.getPicture());
+            articlePaginationDTO.setArticleTitle(one.getTitle());
+            articleWebDTO.setLastArticle(articlePaginationDTO);
+        }
+        // 查询下一篇文章
+        ArticlePaginationDTO articlePaginationDTO2 = new ArticlePaginationDTO();
+        if (articleDao.findById(articleId + 1).isPresent()) {
+            final Article one = articleDao.getOne(articleId + 1);
+            articlePaginationDTO2.setId(one.getId());
+            articlePaginationDTO2.setArticleCover(one.getPicture());
+            articlePaginationDTO2.setArticleTitle(one.getTitle());
+            articleWebDTO.setNextArticle(articlePaginationDTO2);
+        } else {
+            final Article one = articleDao.getOne(articleId);
+            articlePaginationDTO2.setId(one.getId());
+            articlePaginationDTO2.setArticleCover(one.getPicture());
+            articlePaginationDTO2.setArticleTitle(one.getTitle());
+            articleWebDTO.setNextArticle(articlePaginationDTO2);
+        }
+        // 查询相关推荐文章
+        // 封装点赞和浏览量
+        Article article = new Article();
+        final Article one1 = articleDao.getOne(articleId);
+        articleWebDTO.setId(one1.getId());
+        articleWebDTO.setArticleCover(one1.getPicture());
+        articleWebDTO.setArticleTitle(one1.getTitle());
+        articleWebDTO.setArticleContent(one1.getContent());
+        articleWebDTO.setCreateTime(one1.getCreateTime());
+        articleWebDTO.setUpdateTime(one1.getUpdateTime());
+        if (article.getCategoryId() != null) {
+            final Category category = categoryDao.findById(article.getCategoryId()).get();
+            articleWebDTO.setCategoryId(category.getId());
+            articleWebDTO.setCategoryName(category.getCategory());
+        }
+        final List<ArticleTag> allByArticleId = articleTagDao.findAllByArticleId(articleId);
+        if (!allByArticleId.isEmpty()) {
+            List<TagDTO> tagDTOList = new ArrayList<>();
+            for (ArticleTag articleTag : allByArticleId) {
+                final Tag tag = tagDao.findById(articleTag.getTagId()).get();
+                tagDTOList.add(new TagDTO(tag.getId(), tag.getTag(), tag.getCreateTime(), tag.getUpdateTime()));
+            }
+            articleWebDTO.setTagDTOList(tagDTOList);
+        }
+        return articleWebDTO;
     }
 }
