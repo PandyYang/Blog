@@ -15,4 +15,6 @@ public interface ArticleTagDao extends JpaRepository<ArticleTag, Integer> {
     void deleteAllByArticleId(int id);
 
     List<ArticleTag> findAllByArticleId(int id);
+
+    boolean existsByTagId(int tagId);
 }
