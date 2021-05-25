@@ -94,9 +94,9 @@ export default {
   left: 0;
   right: 0;
   height: 100vh;
-  background: url(https://pandy-blog.oss-cn-beijing.aliyuncs.com/articles/1396828874708733953.jpg) center center /
-    cover no-repeat;
-  background-color: #49b1f5;
+  background: #49b1f5
+    url(https://pandy-blog.oss-cn-beijing.aliyuncs.com/articles/2020-10-04%20152033.jpg)
+    no-repeat center center;
   animation: header-effect 1s;
 }
 .message-title {

@@ -116,29 +116,29 @@
                 article.likeCount
               }}</span>
             </a>
-<!--            <a class="reward-btn">-->
-<!--              &lt;!&ndash; 打赏按钮 &ndash;&gt;-->
-<!--              <i class="iconfont iconerweima" /> 打赏-->
-<!--              &lt;!&ndash; 二维码 &ndash;&gt;-->
-<!--              <div class="animated fadeInDown reward-main">-->
-<!--                <ul class="reward-all">-->
-<!--                  <li class="reward-item">-->
-<!--                    <img-->
-<!--                      class="reward-img"-->
-<!--                      :src="require('../../assets/img/wechat.png')"-->
-<!--                    />-->
-<!--                    <div class="reward-desc">微信</div>-->
-<!--                  </li>-->
-<!--                  <li class="reward-item">-->
-<!--                    <img-->
-<!--                      class="reward-img"-->
-<!--                      :src="require('../../assets/img/alipay.png')"-->
-<!--                    />-->
-<!--                    <div class="reward-desc">支付宝</div>-->
-<!--                  </li>-->
-<!--                </ul>-->
-<!--              </div>-->
-<!--            </a>-->
+            <!--            <a class="reward-btn">-->
+            <!--              &lt;!&ndash; 打赏按钮 &ndash;&gt;-->
+            <!--              <i class="iconfont iconerweima" /> 打赏-->
+            <!--              &lt;!&ndash; 二维码 &ndash;&gt;-->
+            <!--              <div class="animated fadeInDown reward-main">-->
+            <!--                <ul class="reward-all">-->
+            <!--                  <li class="reward-item">-->
+            <!--                    <img-->
+            <!--                      class="reward-img"-->
+            <!--                      :src="require('../../assets/img/wechat.png')"-->
+            <!--                    />-->
+            <!--                    <div class="reward-desc">微信</div>-->
+            <!--                  </li>-->
+            <!--                  <li class="reward-item">-->
+            <!--                    <img-->
+            <!--                      class="reward-img"-->
+            <!--                      :src="require('../../assets/img/alipay.png')"-->
+            <!--                    />-->
+            <!--                    <div class="reward-desc">支付宝</div>-->
+            <!--                  </li>-->
+            <!--                </ul>-->
+            <!--              </div>-->
+            <!--            </a>-->
           </div>
           <div class="pagination-post">
             <!-- 上一篇 -->
@@ -239,7 +239,10 @@
                 :key="item.id"
               >
                 <router-link :to="'/articles/' + item.id" class="content-cover">
-                  <img :src="item.articleCover" />
+                  <img
+                    :src="item.articleCover"
+                    onerror="this.src='https://pandy-blog.oss-cn-beijing.aliyuncs.com/articles/1396828874708733953.jpg'"
+                  />
                 </router-link>
                 <div class="content">
                   <div class="content-title">

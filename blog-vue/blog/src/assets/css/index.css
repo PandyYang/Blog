@@ -303,6 +303,7 @@ p {
   margin: 0 6px;
 }
 
+/*评论区背景*/
 .comment-textarea {
   font-size: 0.875rem;
   color: #555 !important;
@@ -312,7 +313,7 @@ p {
   resize: none;
   width: 100%;
   border-radius: 4px;
-  background: url(https://pandy-blog.oss-cn-beijing.aliyuncs.com/articles/1396828874708733953.jpg) 100% 100% no-repeat;
+  background: url(https://www.static.talkxj.com/commentBack.webp) 100% 100% no-repeat;
 }
 
 .upload-btn{
