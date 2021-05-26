@@ -95,10 +95,11 @@ export default {
   right: 0;
   height: 100vh;
   background: #49b1f5
-    url(https://pandy-blog.oss-cn-beijing.aliyuncs.com/articles/2020-10-04%20152033.jpg)
-    no-repeat center center;
+    url(https://pandy-blog.oss-cn-beijing.aliyuncs.com/wallerpaper/wallhaven-8oeg3j.jpg)
+  center center / cover no-repeat;
   animation: header-effect 1s;
 }
+
 .message-title {
   color: #eee;
   animation: title-scale 1s;

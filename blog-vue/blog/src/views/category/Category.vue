@@ -47,7 +47,7 @@ export default {
 
 <style scoped>
 .category-banner {
-  background: url(https://pandy-blog.oss-cn-beijing.aliyuncs.com/articles/IMG_20210501_154158.jpg)
+  background: url(https://pandy-blog.oss-cn-beijing.aliyuncs.com/wallerpaper/wallhaven-z8p9rj.jpg)
     center center / cover no-repeat;
   background-color: #49b1f5;
 }

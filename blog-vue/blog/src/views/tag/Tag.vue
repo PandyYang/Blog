@@ -45,7 +45,7 @@ export default {
 
 <style scoped>
 .tag-banner {
-  background: url(https://pandy-blog.oss-cn-beijing.aliyuncs.com/articles/IMG_20210503_175329.jpg)
+  background: url(https://pandy-blog.oss-cn-beijing.aliyuncs.com/wallerpaper/wallhaven-g7wy2l.jpg)
     center center / cover no-repeat;
   background-color: #49b1f5;
 }

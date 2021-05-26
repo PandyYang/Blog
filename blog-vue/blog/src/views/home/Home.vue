@@ -5,7 +5,7 @@
       <div class="banner-container">
         <!-- 联系方式 -->
         <h1 class="blog-title animated zoomIn">
-          云儿的故事册
+          Pandy
         </h1>
         <!-- 一言 -->
         <div class="blog-intro">
@@ -331,13 +331,15 @@ export default {
   left: 0;
   right: 0;
   height: 100vh;
-  background: #49b1f5
-    url("https://pandy-blog.oss-cn-beijing.aliyuncs.com/articles/IMG_4942.HEIC.jpg")
-    no-repeat fixed center center;
+  background: url("https://pandy-blog.oss-cn-beijing.aliyuncs.com/wallerpaper/wallhaven-j3egvq.jpg")center
+  center / cover no-repeat;
+  background-color: #49b1f5;
+  background-attachment: fixed;
   text-align: center;
   color: #fff !important;
   animation: header-effect 1s;
 }
+
 .banner-container {
   margin-top: 43vh;
   line-height: 1.5;

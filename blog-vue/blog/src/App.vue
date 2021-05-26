@@ -22,10 +22,10 @@
     <ForgetModel></ForgetModel>
     <!-- 绑定邮箱模态框 -->
     <EmailModel></EmailModel>
-    <!-- 音乐播放器 -->
-    <Player></Player>
-    <!-- 聊天室 -->
-    <ChatRoom></ChatRoom>
+<!--    &lt;!&ndash; 音乐播放器 &ndash;&gt;-->
+<!--    <Player></Player>-->
+<!--    &lt;!&ndash; 聊天室 &ndash;&gt;-->
+<!--    <ChatRoom></ChatRoom>-->
   </v-app>
 </template>
 
@@ -39,12 +39,12 @@ import LoginModel from "./components/model/LoginModel";
 import RegisterModel from "./components/model/RegisterModel";
 import ForgetModel from "./components/model/ForgetModel";
 import EmailModel from "./components/model/EmailModel";
-import Player from "zw-player";
-import ChatRoom from "./components/ChatRoom";
+// import Player from "zw-player";
+// import ChatRoom from "./components/ChatRoom";
 export default {
   components: {
     TopNavBar,
-    Player,
+    // Player,
     SideNavBar,
     Footer,
     BackTop,
@@ -53,7 +53,7 @@ export default {
     RegisterModel,
     ForgetModel,
     EmailModel,
-    ChatRoom
+    // ChatRoom
   }
 };
 </script>

@@ -112,12 +112,12 @@ export default {
 
 <style scoped>
 .tag-banner {
-  background: url(https://cdn.jsdelivr.net/gh/axh2018/axh2018.github.io/medias/banner/6.jpg)
+  background: url(https://pandy-blog.oss-cn-beijing.aliyuncs.com/wallerpaper/wallhaven-z8zgmj.jpg)
     center center / cover no-repeat;
   background-color: #49b1f5;
 }
 .category-banner {
-  background: url(https://cdn.jsdelivr.net/gh/axh2018/axh2018.github.io/medias/banner/6.jpg)
+  background: url(https://pandy-blog.oss-cn-beijing.aliyuncs.com/wallerpaper/wallhaven-z8zgmj.jpg)
     center center / cover no-repeat;
   background-color: #49b1f5;
 }

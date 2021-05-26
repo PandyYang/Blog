@@ -50,11 +50,11 @@
         <!--            <i class="iconfont iconlianjie" /> 友链-->
         <!--          </router-link>-->
         <!--        </div>-->
-        <div class="menus-item">
-          <router-link to="/about">
-            <i class="iconfont iconzhifeiji" /> 关于
-          </router-link>
-        </div>
+<!--        <div class="menus-item">-->
+<!--          <router-link to="/about">-->
+<!--            <i class="iconfont iconzhifeiji" /> 关于-->
+<!--          </router-link>-->
+<!--        </div>-->
         <div class="menus-item">
           <router-link to="/message">
             <i class="iconfont iconpinglunzu" /> 留言

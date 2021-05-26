@@ -78,7 +78,7 @@ export default {
 
 <style scoped>
 .archive-banner {
-  background: url(https://pandy-blog.oss-cn-beijing.aliyuncs.com/articles/IMG_20210501_152743.jpg)
+  background: url(https://pandy-blog.oss-cn-beijing.aliyuncs.com/wallerpaper/wallhaven-q2re17.png)
     center center / cover no-repeat;
   background-color: #49b1f5;
 }
