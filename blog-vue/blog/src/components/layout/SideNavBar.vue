@@ -117,6 +117,7 @@ hr {
 .menu-container {
   padding: 0 10px 40px;
   animation: 0.8s ease 0s 1 normal none running sidebarItem;
+  background-color: pink;
 }
 .menus-item a {
   padding: 6px 30px;

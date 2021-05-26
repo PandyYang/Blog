@@ -201,10 +201,10 @@ export default {
         this.$message.error("文章标签不能为空");
         return false;
       }
-      if (this.article.articleCover.trim() == "") {
-        this.$message.error("文章封面不能为空");
-        return false;
-      }
+      // if (this.article.articleCover.trim() == "") {
+      //   this.$message.error("文章封面不能为空");
+      //   return false;
+      // }
       this.article.isDraft = 0;
       this.axios.post("/api/admin/articles", this.article).then(({ data }) => {
         if (data.flag) {

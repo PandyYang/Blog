@@ -45,11 +45,11 @@
             <i class="iconfont iconbiaoqian" /> 标签
           </router-link>
         </div>
-<!--        <div class="menus-item">-->
-<!--          <router-link to="/links">-->
-<!--            <i class="iconfont iconlianjie" /> 友链-->
-<!--          </router-link>-->
-<!--        </div>-->
+        <!--        <div class="menus-item">-->
+        <!--          <router-link to="/links">-->
+        <!--            <i class="iconfont iconlianjie" /> 友链-->
+        <!--          </router-link>-->
+        <!--        </div>-->
         <div class="menus-item">
           <router-link to="/about">
             <i class="iconfont iconzhifeiji" /> 关于

@@ -77,7 +77,7 @@
           <div class="aritcle-copyright">
             <div>
               <span>文章作者：</span>
-              <a href="http://www.talkxj.com" target="_blank">;)</a>
+              <a href="http://www.talkxj.com" target="_blank">Pandy</a>
             </div>
             <div>
               <span>文章链接：</span>
@@ -383,7 +383,9 @@ export default {
       this.axios.post("/api/articles/like", param).then(({ data }) => {
         if (data.flag) {
           //判断是否点赞
-          if (this.$store.state.articleLikeSet.indexOf(this.article.id) != -1) {
+          if (
+            this.$store.state.articleLikeSet.indexOf(this.article.id) !== -1
+          ) {
             this.$set(this.article, "likeCount", this.article.likeCount - 1);
           } else {
             this.$set(this.article, "likeCount", this.article.likeCount + 1);

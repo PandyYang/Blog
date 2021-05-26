@@ -10,7 +10,7 @@ spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://8.140.185.67:3306/blog?serverTimezone=GMT%2B8&allowMultiQueries=true
+    url: jdbc:mysql://8.140.185.67:3306/blog-local?serverTimezone=GMT%2B8&allowMultiQueries=true
     username: root
     password: root
     hikari:

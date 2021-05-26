@@ -331,10 +331,9 @@ export default {
   left: 0;
   right: 0;
   height: 100vh;
-  background: url("https://pandy-blog.oss-cn-beijing.aliyuncs.com/articles/IMG_4942.HEIC.jpg") center
-    center / cover no-repeat;
-  background-color: #49b1f5;
-  background-attachment: fixed;
+  background: #49b1f5
+    url("https://pandy-blog.oss-cn-beijing.aliyuncs.com/articles/IMG_4942.HEIC.jpg")
+    no-repeat fixed center center;
   text-align: center;
   color: #fff !important;
   animation: header-effect 1s;
