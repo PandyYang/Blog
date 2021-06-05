@@ -40,16 +40,16 @@
           <span @click="openForget" class="float-right">忘记密码?</span>
         </div>
         <div class="social-login-title">社交账号登录</div>
-<!--        <div class="social-login-wrapper">-->
-<!--          &lt;!&ndash; 微博登录 &ndash;&gt;-->
-<!--          <a-->
-<!--            class="mr-3 iconfont iconweibo"-->
-<!--            style="color:#e05244"-->
-<!--            @click="weiboLogin"-->
-<!--          />-->
-<!--          &lt;!&ndash; qq登录 &ndash;&gt;-->
-<!--          <a class="iconfont iconqq" style="color:#00AAEE" @click="qqLogin" />-->
-<!--        </div>-->
+        <!--        <div class="social-login-wrapper">-->
+        <!--          &lt;!&ndash; 微博登录 &ndash;&gt;-->
+        <!--          <a-->
+        <!--            class="mr-3 iconfont iconweibo"-->
+        <!--            style="color:#e05244"-->
+        <!--            @click="weiboLogin"-->
+        <!--          />-->
+        <!--          &lt;!&ndash; qq登录 &ndash;&gt;-->
+        <!--          <a class="iconfont iconqq" style="color:#00AAEE" @click="qqLogin" />-->
+        <!--        </div>-->
       </div>
     </v-card>
   </v-dialog>
@@ -102,29 +102,30 @@ export default {
       }
       const that = this;
       // eslint-disable-next-line no-undef
-      var captcha = new TencentCaptcha(this.config.TENCENT_CAPTCHA, function(
-        res
-      ) {
-        if (res.ret === 0) {
-          //发送登录请求
-          let param = new URLSearchParams();
-          param.append("username", that.username);
-          param.append("password", that.password);
-          that.axios.post("/api/login", param).then(({ data }) => {
-            if (data.flag) {
-              that.username = "";
-              that.password = "";
-              that.$store.commit("login", data.data);
-              that.$store.commit("closeModel");
-              that.$toast({ type: "success", message: data.message });
-            } else {
-              that.$toast({ type: "error", message: data.message });
-            }
-          });
+      // var captcha = new TencentCaptcha(this.config.TENCENT_CAPTCHA, function(
+      //   res
+      // ) {
+      //   if (res.ret === 0) {
+      //发送登录请求
+      let param = new URLSearchParams();
+      param.append("username", that.username);
+      param.append("password", that.password);
+      that.axios.post("/api/login", param).then(({ data }) => {
+        if (data.flag) {
+          that.username = "";
+          that.password = "";
+          that.$store.commit("login", data.data);
+          that.$store.commit("closeModel");
+          that.$toast({ type: "success", message: data.message });
+        } else {
+          that.$toast({ type: "error", message: data.message });
         }
       });
-      // 显示验证码
-      captcha.show();
+      // }
+      // }
+      // );
+      // // 显示验证码
+      // captcha.show();
     },
     qqLogin() {
       //保留当前路径
