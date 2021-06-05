@@ -63,11 +63,11 @@
           <i class="iconfont iconbiaoqian" /> 标签
         </router-link>
       </div>
-      <div class="menus-item">
-        <router-link to="/links">
-          <i class="iconfont iconlianjie" /> 友链
-        </router-link>
-      </div>
+<!--      <div class="menus-item">-->
+<!--        <router-link to="/links">-->
+<!--          <i class="iconfont iconlianjie" /> 友链-->
+<!--        </router-link>-->
+<!--      </div>-->
       <!--      <div class="menus-item">-->
       <!--        <router-link to="/about">-->
       <!--          <i class="iconfont iconzhifeiji" /> 关于-->
@@ -117,7 +117,7 @@ hr {
 .menu-container {
   padding: 0 10px 40px;
   animation: 0.8s ease 0s 1 normal none running sidebarItem;
-  background-color: pink;
+  background-color: #d2ebfd;
 }
 .menus-item a {
   padding: 6px 30px;

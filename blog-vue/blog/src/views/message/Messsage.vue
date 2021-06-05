@@ -10,7 +10,7 @@
             v-model="messageContent"
             @click="show = true"
             @keyup.enter="addToList"
-            placeholder="说点什么吧"
+            placeholder="这个人很懒,什么也不想留下~"
           />
           <button
             class="ml-3 animated bounceInLeft"
@@ -56,8 +56,8 @@ export default {
   },
   methods: {
     addToList() {
-      if (this.messageContent.trim() == "") {
-        this.$toast({ type: "error", message: "留言不能为空" });
+      if (this.messageContent.trim() === "") {
+        this.$toast({ type: "error", message: "听不懂你说啥" });
         return false;
       }
       const userAvatar = this.$store.state.avatar

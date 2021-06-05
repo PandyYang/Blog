@@ -12,23 +12,23 @@
           {{ obj.output }} <span class="typed-cursor">|</span>
         </div>
         <!-- 联系方式 -->
-        <div class="blog-contact">
-          <a
-            class="iconfont iconqq"
-            target="_blank"
-            href="http://wpa.qq.com/msgrd?v=3&uin=1192176811&site=qq&menu=yes"
-          />
-          <a
-            target="_blank"
-            href="https://github.com/X1192176811"
-            class="ml-5 mr-5 iconfont icongithub"
-          />
-          <a
-            target="_blank"
-            href="https://gitee.com/feng_meiyu"
-            class="iconfont icongitee-fill-round"
-          />
-        </div>
+<!--        <div class="blog-contact">-->
+<!--          <a-->
+<!--            class="iconfont iconqq"-->
+<!--            target="_blank"-->
+<!--            href="http://wpa.qq.com/msgrd?v=3&uin=1192176811&site=qq&menu=yes"-->
+<!--          />-->
+<!--          <a-->
+<!--            target="_blank"-->
+<!--            href="https://github.com/X1192176811"-->
+<!--            class="ml-5 mr-5 iconfont icongithub"-->
+<!--          />-->
+<!--          <a-->
+<!--            target="_blank"-->
+<!--            href="https://gitee.com/feng_meiyu"-->
+<!--            class="iconfont icongitee-fill-round"-->
+<!--          />-->
+<!--        </div>-->
       </div>
       <!-- 向下滚动 -->
       <div class="scroll-down" @click="scrollDown">
@@ -44,10 +44,10 @@
           class="animated zoomIn article-card"
           style="border-radius: 12px 8px 8px 12px"
           v-for="(item, index) of articleList"
-          :key="item.id"
+          :key="index"
         >
           <!-- 文章封面图 -->
-          <div :class="isRight(index)">
+          <div v-if="item.articleCover !== ''" :class="isRight(index)">
             <router-link :to="'/articles/' + item.id">
               <v-img
                 class="on-hover"
@@ -59,14 +59,14 @@
           </div>
           <!-- 文章信息 -->
           <div class="article-wrapper">
-            <div style="line-height:1.4">
+            <div style="line-height:1.4; text-align: center">
               <router-link :to="'/articles/' + item.id">
                 {{ item.articleTitle }}
               </router-link>
             </div>
             <div class="article-info">
               <!-- 是否置顶 -->
-              <span v-if="item.isTop == 1">
+              <span v-if="item.isTop === 1">
                 <span style="color:#ff7242">
                   <i class="iconfont iconzhiding" /> 置顶
                 </span>
@@ -301,7 +301,7 @@ export default {
   computed: {
     isRight() {
       return function(index) {
-        if (index % 2 == 0) {
+        if (index % 2 === 0) {
           return "article-cover left-radius";
         }
         return "article-cover right-radius";
@@ -383,7 +383,7 @@ export default {
   .article-card {
     display: flex;
     align-items: center;
-    height: 280px;
+    height: 250px;
     width: 100%;
     margin-top: 20px;
   }
@@ -400,7 +400,7 @@ export default {
   }
   .article-wrapper {
     padding: 0 2.5rem;
-    width: 55%;
+    width: 100%;
   }
   .article-wrapper a {
     font-size: 1.5rem;
@@ -467,6 +467,7 @@ export default {
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+  width: 100%;
 }
 .blog-wrapper {
   position: sticky;

@@ -77,7 +77,7 @@
           <div class="aritcle-copyright">
             <div>
               <span>文章作者：</span>
-              <a href="http://www.talkxj.com" target="_blank">Pandy</a>
+              <a href="" target="_blank">Pandy</a>
             </div>
             <div>
               <span>文章链接：</span>
