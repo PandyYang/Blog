@@ -455,6 +455,7 @@ export default {
   color: #858585;
   line-height: 2;
   margin: 0.375rem 0;
+  text-align: center;
 }
 .article-info a {
   font-size: 95%;
