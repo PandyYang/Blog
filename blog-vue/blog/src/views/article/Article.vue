@@ -105,7 +105,7 @@
                 {{ item.tagName }}
               </router-link>
             </div>
-            <share style="margin-left:auto" :config="config" />
+<!--            <share style="margin-left:auto" :config="config" />-->
           </div>
           <!-- 点赞打赏等 -->
           <div class="article-reward">
@@ -193,7 +193,10 @@
                 :key="item.id"
               >
                 <router-link :to="'/articles/' + item.id">
-                  <img class="recommend-cover" :src="item.articleCover" />
+                  <img
+                    v-if="item.articleCover !== ''"
+                    class="recommend-cover"
+                    :src="item.articleCover"/>
                   <div class="recommend-info">
                     <div class="recommend-date">
                       <i class="iconfont iconrili" />
@@ -535,7 +538,7 @@ export default {
     margin: 3px;
     width: calc(33.333% - 6px);
     height: 200px;
-    background: #000;
+    background: rgba(0, 0, 0, 0.5);
     vertical-align: bottom;
   }
 }
@@ -743,7 +746,7 @@ export default {
   margin-top: 40px;
   overflow: hidden;
   width: 100%;
-  background: #000;
+  background: rgba(0, 0, 0, 0.5);
 }
 .post {
   position: relative;

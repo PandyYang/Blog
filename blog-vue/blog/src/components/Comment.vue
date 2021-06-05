@@ -192,7 +192,7 @@
     </div>
     <!-- 没有评论提示 -->
     <div v-else style="padding:1.25rem;text-align:center">
-      来发评论吧~
+      自古评论出人才
     </div>
   </div>
 </template>
