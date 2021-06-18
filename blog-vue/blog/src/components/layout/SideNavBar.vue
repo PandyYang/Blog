@@ -44,6 +44,11 @@
     <!-- 页面导航 -->
     <div class="menu-container">
       <div class="menus-item">
+        <router-link to="/blog">
+          <i class="iconfont iconzhuye" /> 写博客
+        </router-link>
+      </div>
+      <div class="menus-item">
         <router-link to="/">
           <i class="iconfont iconzhuye" /> 首页
         </router-link>

@@ -21,9 +21,18 @@ import "vue-image-swipe/dist/vue-image-swipe.css";
 import Toast from "./components/toast/index";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
+import ElementUI from "element-ui"; // 2.1引入结构
+import "element-ui/lib/theme-chalk/index.css"; // 2.2引入样式
+import { mavonEditor } from "mavon-editor";
+import "mavon-editor/dist/css/index.css";
 
+import "moment/locale/zh-cn";
+
+Vue.component("mavon-editor", mavonEditor);
 Vue.prototype.config = config;
 Vue.config.productionTip = false;
+Vue.prototype.$moment = moment;
+Vue.use(mavonEditor);
 Vue.use(animated);
 Vue.use(Share);
 Vue.use(vueBaberrage);
@@ -31,6 +40,7 @@ Vue.use(InfiniteLoading);
 Vue.use(VueAxios, axios);
 Vue.use(VueImageSwipe);
 Vue.use(Toast);
+Vue.use(ElementUI);
 
 Vue.filter("date", function(value) {
   return moment(value).format("YYYY-MM-DD");

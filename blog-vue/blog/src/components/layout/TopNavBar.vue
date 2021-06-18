@@ -22,27 +22,37 @@
         </router-link>
       </div>
       <div class="float-right nav-title">
-        <div class="menus-btn">
-          <a @click="openSearch"><i class="iconfont iconsousuo" /> 搜索</a>
-        </div>
         <div class="menus-item">
-          <router-link to="/">
-            <i class="iconfont iconzhuye" /> 首页
+          <router-link to="/" style="color: black">
+            <i class="iconfont iconzhuye" style="color: black"/> 首页
           </router-link>
         </div>
         <div class="menus-item">
-          <router-link to="/archives">
-            <i class="iconfont iconguidang" /> 归档
+          <router-link to="/blog" style="color: black">
+            <i style="color: black" class="iconfont iconguidang" /> 写博客
           </router-link>
         </div>
         <div class="menus-item">
-          <router-link to="/categories">
-            <i class="iconfont iconfenlei" /> 分类
+          <router-link to="/bloglist" style="color: black">
+            <i style="color: black" class="iconfont iconguidang" /> 博客管理
+          </router-link>
+        </div>
+        <div class="menus-btn" style="color: black">
+          <a @click="openSearch"><i style="color: black" class="iconfont iconsousuo" /> 搜索</a>
+        </div>
+        <div class="menus-item">
+          <router-link to="/archives" style="color: black">
+            <i class="iconfont iconguidang" style="color: black" /> 归档
           </router-link>
         </div>
         <div class="menus-item">
-          <router-link to="/tags">
-            <i class="iconfont iconbiaoqian" /> 标签
+          <router-link to="/categories" style="color: black">
+            <i class="iconfont iconfenlei" style="color: black" /> 分类
+          </router-link>
+        </div>
+        <div class="menus-item">
+          <router-link to="/tags" style="color: black">
+            <i class="iconfont iconbiaoqian" style="color: black" /> 标签
           </router-link>
         </div>
         <!--        <div class="menus-item">-->
@@ -56,13 +66,13 @@
 <!--          </router-link>-->
 <!--        </div>-->
         <div class="menus-item">
-          <router-link to="/message">
-            <i class="iconfont iconpinglunzu" /> 留言
+          <router-link to="/message" style="color: black">
+            <i class="iconfont iconpinglunzu" style="color: black" /> 留言
           </router-link>
         </div>
         <div class="user-btn">
-          <a v-if="!this.$store.state.avatar" @click="openLogin">
-            <i class="iconfont icondenglu" /> 登录
+          <a v-if="!this.$store.state.avatar" @click="openLogin" style="color: black">
+            <i class="iconfont icondenglu" style="color: black" /> 登录
           </a>
           <template v-else>
             <img

@@ -11,6 +11,8 @@ import Message from "../views/message/Messsage.vue";
 import ArticleList from "../components/ArticleList.vue";
 import User from "../views/user/User.vue";
 import OauthLogin from "../components/OauthLogin.vue";
+import Blog from "../views/blog/Blog.vue";
+import BlogList from "../views/blog/BlogList.vue";
 
 Vue.use(VueRouter);
 
@@ -81,6 +83,20 @@ const routes = [
     component: User,
     meta: {
       title: "个人中心"
+    }
+  },
+  {
+    path: "/blog",
+    component: Blog,
+    meta: {
+      title: "博客"
+    }
+  },
+  {
+    path: "/bloglist",
+    component: BlogList,
+    meta: {
+      title: "博客管理"
     }
   },
   {

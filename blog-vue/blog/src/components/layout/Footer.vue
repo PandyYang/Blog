@@ -3,7 +3,6 @@
     <div class="footer-wrap">
       <div>©2019 - {{ new Date().getFullYear() }} By Pandy</div>
       <a href="https://beian.miit.gov.cn/" target="_blank">
-        湘ICP备19021924号
       </a>
     </div>
   </v-footer>
