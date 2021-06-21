@@ -39,8 +39,7 @@
         </div>
         <div class="menus-item">
           <router-link to="/bloglist" style="color: black">
-            <i style="color: black" />
-            <i @click="openSearch" style="color: black" class="iconfont iconsousuo" /> 博客管理
+            <i @click="openSearch" style="color: black" class="iconfont iconsousuo" /> 搜索
 <!--            <a @click="openSearch"> 搜索</a>-->
           </router-link>
         </div>
