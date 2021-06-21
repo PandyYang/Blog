@@ -10,7 +10,7 @@
             v-model="messageContent"
             @click="show = true"
             @keyup.enter="addToList"
-            placeholder="这个人很懒,什么也不想留下~"
+            placeholder="说点什么吧"
           />
           <button
             class="ml-3 animated bounceInLeft"
@@ -57,7 +57,7 @@ export default {
   methods: {
     addToList() {
       if (this.messageContent.trim() === "") {
-        this.$toast({ type: "error", message: "听不懂你说啥" });
+        this.$toast({ type: "error", message: "请输入留言内容" });
         return false;
       }
       const userAvatar = this.$store.state.avatar
@@ -95,7 +95,7 @@ export default {
   right: 0;
   height: 100vh;
   background: #49b1f5
-    url(https://pandy-blog.oss-cn-beijing.aliyuncs.com/wallerpaper/wallhaven-8oeg3j.jpg)
+    url(https://pandy-blog.oss-cn-beijing.aliyuncs.com/articles/2020-10-04%20152033.jpg)
   center center / cover no-repeat;
   animation: header-effect 1s;
 }

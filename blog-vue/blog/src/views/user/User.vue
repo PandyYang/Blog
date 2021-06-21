@@ -109,7 +109,7 @@ export default {
 
 <style scoped>
 .user-banner {
-  background: url(https://pandy-blog.oss-cn-beijing.aliyuncs.com/articles/IMG_4958.HEIC.jpg) center
+  background: url(https://pandy-blog.oss-cn-beijing.aliyuncs.com/articles/IMG_20210501_152743.jpg) center
     center / cover no-repeat;
   background-color: #49b1f5;
 }

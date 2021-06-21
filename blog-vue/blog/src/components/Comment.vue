@@ -192,7 +192,7 @@
     </div>
     <!-- 没有评论提示 -->
     <div v-else style="padding:1.25rem;text-align:center">
-      说点什么吧
+      暂无评论
     </div>
   </div>
 </template>

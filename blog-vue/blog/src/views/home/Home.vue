@@ -146,23 +146,23 @@
               <v-icon color="#fff" size="18" class="mr-1">mdi-bookmark</v-icon>
               加入书签
             </a>
-            <div class="card-info-social">
-              <a
-                class="iconfont iconqq"
-                target="_blank"
-                href="http://wpa.qq.com/msgrd?v=3&uin=1192176811&site=qq&menu=yes"
-              />
-              <a
-                target="_blank"
-                href="https://github.com/X1192176811"
-                class="ml-5 mr-5 iconfont icongithub"
-              />
-              <a
-                target="_blank"
-                href="https://gitee.com/feng_meiyu"
-                class="iconfont icongitee-fill-round"
-              />
-            </div>
+<!--            <div class="card-info-social">-->
+<!--              <a-->
+<!--                class="iconfont iconqq"-->
+<!--                target="_blank"-->
+<!--                href="http://wpa.qq.com/msgrd?v=3&uin=1192176811&site=qq&menu=yes"-->
+<!--              />-->
+<!--              <a-->
+<!--                target="_blank"-->
+<!--                href="https://github.com/X1192176811"-->
+<!--                class="ml-5 mr-5 iconfont icongithub"-->
+<!--              />-->
+<!--              <a-->
+<!--                target="_blank"-->
+<!--                href="https://gitee.com/feng_meiyu"-->
+<!--                class="iconfont icongitee-fill-round"-->
+<!--              />-->
+<!--            </div>-->
           </v-card>
           <!-- 网站信息 -->
           <v-card class="blog-card animated zoomIn mt-5 big">
