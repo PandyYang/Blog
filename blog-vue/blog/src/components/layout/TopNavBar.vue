@@ -24,7 +24,7 @@
       <div class="float-right nav-title">
         <div class="menus-item">
           <router-link to="/" style="color: black">
-            <i class="iconfont iconzhuye" style="color: black"/> 首页
+            <i class="iconfont iconzhuye" style="color: black" /> 首页
           </router-link>
         </div>
         <div class="menus-item">
@@ -37,15 +37,11 @@
             <i style="color: black" class="iconfont iconguidang" /> 博客管理
           </router-link>
         </div>
-        <div class="menus-item">
-          <router-link to="/bloglist" style="color: black">
-            <i @click="openSearch" style="color: black" class="iconfont iconsousuo" /> 搜索
-<!--            <a @click="openSearch"> 搜索</a>-->
-          </router-link>
+        <div class="menus-btn" style="color: black!important;">
+          <a @click="openSearch" style="color: black"><i style="color: black!important;" class="iconfont iconsousuo" />
+            搜索</a
+          >
         </div>
-<!--        <div class="menus-btn" style="color: black!important;">-->
-<!--          <a @click="openSearch"><i style="color: black!important;" class="iconfont iconsousuo" /> 搜索</a>-->
-<!--        </div>-->
         <div class="menus-item">
           <router-link to="/archives" style="color: black">
             <i class="iconfont iconguidang" style="color: black" /> 归档
@@ -66,18 +62,22 @@
         <!--            <i class="iconfont iconlianjie" /> 友链-->
         <!--          </router-link>-->
         <!--        </div>-->
-<!--        <div class="menus-item">-->
-<!--          <router-link to="/about">-->
-<!--            <i class="iconfont iconzhifeiji" /> 关于-->
-<!--          </router-link>-->
-<!--        </div>-->
+        <!--        <div class="menus-item">-->
+        <!--          <router-link to="/about">-->
+        <!--            <i class="iconfont iconzhifeiji" /> 关于-->
+        <!--          </router-link>-->
+        <!--        </div>-->
         <div class="menus-item">
           <router-link to="/message" style="color: black">
             <i class="iconfont iconpinglunzu" style="color: black" /> 留言
           </router-link>
         </div>
         <div class="user-btn">
-          <a v-if="!this.$store.state.avatar" @click="openLogin" style="color: black">
+          <a
+            v-if="!this.$store.state.avatar"
+            @click="openLogin"
+            style="color: black"
+          >
             <i class="iconfont icondenglu" style="color: black" /> 登录
           </a>
           <template v-else>
