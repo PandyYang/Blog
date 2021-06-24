@@ -23,38 +23,45 @@
       </div>
       <div class="float-right nav-title">
         <div class="menus-item">
-          <router-link to="/" style="color: black">
-            <i class="iconfont iconzhuye" style="color: black" /> 首页
+          <router-link to="/">
+            <i class="iconfont iconzhuye" style="color: black" />
+            <span style="color:black;">首页</span>
           </router-link>
         </div>
         <div class="menus-item">
           <router-link to="/blog" style="color: black">
-            <i style="color: black" class="iconfont iconguidang" /> 写博客
+            <i style="color: black" class="iconfont iconguidang" />
+            <span style="color:black;">写博客</span>
           </router-link>
         </div>
         <div class="menus-item">
           <router-link to="/bloglist" style="color: black">
-            <i style="color: black" class="iconfont iconguidang" /> 博客管理
+            <i style="color: black" class="iconfont iconguidang" />
+            <span style="color:black;">博客管理</span>
           </router-link>
         </div>
         <div class="menus-btn" style="color: black!important;">
-          <a @click="openSearch" style="color: black"><i style="color: black!important;" class="iconfont iconsousuo" />
-            搜索</a
+          <a @click="openSearch" style="color: black"
+            ><i style="color: black!important;" class="iconfont iconsousuo" />
+            <span style="color:black;">搜索</span></a
           >
         </div>
         <div class="menus-item">
           <router-link to="/archives" style="color: black">
-            <i class="iconfont iconguidang" style="color: black" /> 归档
+            <i class="iconfont iconguidang" style="color: black" />
+            <span style="color:black;">归档</span>
           </router-link>
         </div>
         <div class="menus-item">
           <router-link to="/categories" style="color: black">
-            <i class="iconfont iconfenlei" style="color: black" /> 分类
+            <i class="iconfont iconfenlei" style="color: black" />
+            <span style="color:black;">分类</span>
           </router-link>
         </div>
         <div class="menus-item">
           <router-link to="/tags" style="color: black">
-            <i class="iconfont iconbiaoqian" style="color: black" /> 标签
+            <i class="iconfont iconbiaoqian" style="color: black" />
+            <span style="color:black;">标签</span>
           </router-link>
         </div>
         <!--        <div class="menus-item">-->
@@ -69,7 +76,8 @@
         <!--        </div>-->
         <div class="menus-item">
           <router-link to="/message" style="color: black">
-            <i class="iconfont iconpinglunzu" style="color: black" /> 留言
+            <i class="iconfont iconpinglunzu" style="color: black" />
+            <span style="color:black;">留言</span>
           </router-link>
         </div>
         <div class="user-btn">
@@ -78,7 +86,8 @@
             @click="openLogin"
             style="color: black"
           >
-            <i class="iconfont icondenglu" style="color: black" /> 登录
+            <i class="iconfont icondenglu" style="color: black" />
+            <span style="color:black;">登录</span>
           </a>
           <template v-else>
             <img
@@ -90,11 +99,15 @@
             <ul class="user-submenu">
               <li>
                 <router-link to="/user">
-                  <i class="iconfont icongerenzhongxin" /> 个人中心
+                  <i class="iconfont icongerenzhongxin" />
+                  <span style="color:black;">个人中心</span>
                 </router-link>
               </li>
               <li>
-                <a @click="logout"><i class="iconfont icontuichu" /> 退出</a>
+                <a @click="logout"
+                  ><i class="iconfont icontuichu" />
+                  <span style="color:black;">退出</span></a
+                >
               </li>
             </ul>
           </template>
